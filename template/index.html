@@ -516,43 +516,178 @@
 
  /* HOW IT WORKS */
  .how { padding: 140px 0; background: var(--dark-2); }
+ /* PROCESS TIMELINE */
  .steps {
- display: grid;
- grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+ display: flex;
+ flex-direction: column;
  gap: 0;
  margin-top: 80px;
+ position: relative;
+ max-width: 860px;
+ margin-left: auto;
+ margin-right: auto;
+ }
+
+ /* vertical connecting line */
+ .steps::before {
+ content: "";
+ position: absolute;
+ left: 36px;
+ top: 36px;
+ bottom: 36px;
+ width: 1px;
+ background: linear-gradient(to bottom,
+ var(--accent) 0%,
+ rgba(168,85,247,0.6) 33%,
+ rgba(20,184,166,0.6) 66%,
+ rgba(232,99,74,0.5) 100%);
+ opacity: 0.4;
+ }
+
+ .step {
+ display: grid;
+ grid-template-columns: 72px 1fr;
+ gap: 32px;
+ padding: 0 0 56px;
+ position: relative;
+ align-items: flex-start;
+ }
+ .step:last-child { padding-bottom: 0; }
+
+ /* circle node on the line */
+ .step-node {
+ width: 72px;
+ height: 72px;
+ border-radius: 50%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ font-family: var(--font-display);
+ font-size: 26px;
+ font-weight: 600;
+ letter-spacing: -0.03em;
+ color: var(--light);
+ position: relative;
+ z-index: 1;
+ flex-shrink: 0;
+ border: 1px solid transparent;
+ transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+ .step:nth-child(1) .step-node { background: linear-gradient(135deg, rgba(91,106,240,0.25), rgba(91,106,240,0.08)); border-color: rgba(91,106,240,0.45); box-shadow: 0 0 32px rgba(91,106,240,0.2); }
+ .step:nth-child(2) .step-node { background: linear-gradient(135deg, rgba(168,85,247,0.22), rgba(168,85,247,0.06)); border-color: rgba(168,85,247,0.4); box-shadow: 0 0 32px rgba(168,85,247,0.18); }
+ .step:nth-child(3) .step-node { background: linear-gradient(135deg, rgba(20,184,166,0.22), rgba(20,184,166,0.06)); border-color: rgba(20,184,166,0.4); box-shadow: 0 0 32px rgba(20,184,166,0.18); }
+ .step:nth-child(4) .step-node { background: linear-gradient(135deg, rgba(232,99,74,0.22), rgba(232,99,74,0.06)); border-color: rgba(232,99,74,0.4); box-shadow: 0 0 32px rgba(232,99,74,0.18); }
+ .step:nth-child(1) .step-node { color: #7b8fff; }
+ .step:nth-child(2) .step-node { color: #c084fc; }
+ .step:nth-child(3) .step-node { color: #2dd4bf; }
+ .step:nth-child(4) .step-node { color: #fb8c74; }
+
+ .step-body {
+ background: var(--dark-2);
  border: 1px solid var(--border-subtle);
- border-radius: 8px;
+ border-radius: 16px;
+ padding: 36px 40px;
+ transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+ position: relative;
  overflow: hidden;
  }
- .step {
- padding: 48px 40px;
- border-right: 1px solid var(--border-subtle);
- position: relative;
+ /* arrow pointing left to node */
+ .step-body::before {
+ content: "";
+ position: absolute;
+ left: -8px;
+ top: 28px;
+ width: 14px;
+ height: 14px;
+ background: var(--dark-2);
+ border-left: 1px solid var(--border-subtle);
+ border-bottom: 1px solid var(--border-subtle);
+ transform: rotate(45deg);
  }
- .step:last-child { border-right: none; }
- .step-num {
+ /* colored top strip */
+ .step-body::after {
+ content: "";
+ position: absolute;
+ top: 0; left: 0; right: 0;
+ height: 3px;
+ border-radius: 16px 16px 0 0;
+ opacity: 0.7;
+ }
+ .step:nth-child(1) .step-body::after { background: linear-gradient(90deg, #5b6af0, #a78bfa); }
+ .step:nth-child(2) .step-body::after { background: linear-gradient(90deg, #a855f7, #ec4899); }
+ .step:nth-child(3) .step-body::after { background: linear-gradient(90deg, #14b8a6, #06b6d4); }
+ .step:nth-child(4) .step-body::after { background: linear-gradient(90deg, #e8634a, #f59e0b); }
+
+ .step-body:hover {
+ border-color: rgba(255,255,255,0.12);
+ transform: translateX(6px);
+ box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+ }
+ .step:hover .step-node {
+ transform: scale(1.08);
+ }
+
+ /* tags row */
+ .step-tags {
+ display: flex;
+ gap: 8px;
+ flex-wrap: wrap;
+ margin-bottom: 16px;
+ }
+ .step-tag {
  font-family: var(--font-mono);
- font-size: 11px;
+ font-size: 9px;
  font-weight: 400;
- letter-spacing: 0.12em;
- color: var(--accent);
- margin-bottom: 24px;
- display: block;
+ letter-spacing: 0.14em;
+ text-transform: uppercase;
+ padding: 4px 10px;
+ border-radius: 100px;
+ border: 1px solid;
  }
+ .step:nth-child(1) .step-tag { color: #7b8fff; border-color: rgba(91,106,240,0.3); background: rgba(91,106,240,0.08); }
+ .step:nth-child(2) .step-tag { color: #c084fc; border-color: rgba(168,85,247,0.3); background: rgba(168,85,247,0.08); }
+ .step:nth-child(3) .step-tag { color: #2dd4bf; border-color: rgba(20,184,166,0.3); background: rgba(20,184,166,0.08); }
+ .step:nth-child(4) .step-tag { color: #fb8c74; border-color: rgba(232,99,74,0.3); background: rgba(232,99,74,0.08); }
+
+ .step-num { display: none; }
  .step h3 {
  font-family: var(--font-display);
- font-size: 22px;
+ font-size: 28px;
  font-weight: 500;
  letter-spacing: -0.02em;
- margin-bottom: 14px;
+ margin-bottom: 12px;
  color: var(--light);
  }
  .step p {
- font-size: 14px;
+ font-size: 15px;
  font-weight: 400;
  color: var(--mid);
  line-height: 1.8;
+ }
+ .step-duration {
+ display: flex;
+ align-items: center;
+ gap: 8px;
+ margin-top: 20px;
+ font-family: var(--font-mono);
+ font-size: 10px;
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ color: var(--mid);
+ }
+ .step-duration::before {
+ content: "";
+ width: 16px;
+ height: 1px;
+ background: currentColor;
+ opacity: 0.4;
+ }
+
+ @media (max-width: 640px) {
+ .steps::before { left: 28px; }
+ .step { grid-template-columns: 56px 1fr; gap: 20px; }
+ .step-node { width: 56px; height: 56px; font-size: 20px; }
+ .step-body { padding: 28px 24px; }
  }
 
  /* PORTFOLIO */
@@ -1165,24 +1300,40 @@
  </div>
  <div class="steps fade-up">
  <div class="step">
- <span class="step-num">01 — Discovery</span>
- <h3>Discovery Call</h3>
- <p>We learn about your business, goals, and target audience. No templates — we start with your unique vision.</p>
+   <div class="step-node">01</div>
+   <div class="step-body">
+     <div class="step-tags"><span class="step-tag">Free</span><span class="step-tag">30 min</span></div>
+     <h3>Discovery Call</h3>
+     <p>We learn about your business, goals, and target audience. No templates — we start with your unique vision.</p>
+     <div class="step-duration">Week 1</div>
+   </div>
  </div>
  <div class="step">
- <span class="step-num">02 — Strategy</span>
- <h3>Strategy &amp; Design</h3>
- <p>We map out the site structure and deliver mockups for your review. You approve before a single line of code is written.</p>
+   <div class="step-node">02</div>
+   <div class="step-body">
+     <div class="step-tags"><span class="step-tag">Wireframes</span><span class="step-tag">Mockups</span></div>
+     <h3>Strategy &amp; Design</h3>
+     <p>We map out the site structure and deliver mockups for your review. You approve before a single line of code is written.</p>
+     <div class="step-duration">Week 1–2</div>
+   </div>
  </div>
  <div class="step">
- <span class="step-num">03 — Build</span>
- <h3>Build &amp; Refine</h3>
- <p>We build your site and share it in a staging environment. You review, request changes, we polish until it's perfect.</p>
+   <div class="step-node">03</div>
+   <div class="step-body">
+     <div class="step-tags"><span class="step-tag">Staging</span><span class="step-tag">Revisions</span></div>
+     <h3>Build &amp; Refine</h3>
+     <p>We build your site and share it in a staging environment. You review, request changes, we polish until it's perfect.</p>
+     <div class="step-duration">Week 2–6</div>
+   </div>
  </div>
  <div class="step">
- <span class="step-num">04 — Launch</span>
- <h3>Launch &amp; Grow</h3>
- <p>We go live and hand you the keys. Ongoing support and analytics so your site keeps performing for years to come.</p>
+   <div class="step-node">04</div>
+   <div class="step-body">
+     <div class="step-tags"><span class="step-tag">Go Live</span><span class="step-tag">Support</span></div>
+     <h3>Launch &amp; Grow</h3>
+     <p>We go live and hand you the keys. Ongoing support and analytics so your site keeps performing for years to come.</p>
+     <div class="step-duration">Week 7+</div>
+   </div>
  </div>
  </div>
  </div>
