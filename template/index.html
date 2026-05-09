@@ -328,76 +328,138 @@
  /* SERVICES */
  .services { padding: 140px 0; }
  .section-header { margin-bottom: 80px; }
+
+ /* Bento-style grid */
  .services-grid {
  display: grid;
- grid-template-columns: repeat(3, 1fr);
- gap: 20px;
+ grid-template-columns: repeat(6, 1fr);
+ grid-template-rows: auto;
+ gap: 16px;
  }
  .service-card {
  background: var(--dark-2);
  border: 1px solid var(--border-subtle);
- border-radius: 12px;
+ border-radius: 16px;
  padding: 40px 36px 36px;
- transition: var(--transition);
+ transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+             box-shadow 0.35s ease,
+             border-color 0.35s ease;
  position: relative;
  overflow: hidden;
  display: flex;
  flex-direction: column;
  }
- /* top accent line */
+
+ /* Bento placement */
+ .service-card:nth-child(1) { grid-column: span 3; grid-row: span 2; }
+ .service-card:nth-child(2) { grid-column: span 3; }
+ .service-card:nth-child(3) { grid-column: span 3; }
+ .service-card:nth-child(4) { grid-column: span 2; }
+ .service-card:nth-child(5) { grid-column: span 2; }
+ .service-card:nth-child(6) { grid-column: span 2; }
+ .service-card:nth-child(7) { grid-column: span 6; }
+
+ /* Dot pattern texture */
  .service-card::before {
  content: "";
  position: absolute;
- top: 0; left: 0; right: 0;
- height: 2px;
- background: linear-gradient(90deg, var(--accent), #a78bfa);
- transform: scaleX(0);
- transform-origin: left;
- transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
- }
- /* glow wash on hover */
- .service-card::after {
- content: "";
- position: absolute;
  inset: 0;
- background: radial-gradient(ellipse 80% 60% at 20% 20%, rgba(91,106,240,0.09), transparent 70%);
+ background-image: radial-gradient(circle, rgba(255,255,255,0.035) 1px, transparent 1px);
+ background-size: 20px 20px;
  opacity: 0;
  transition: opacity 0.4s ease;
  pointer-events: none;
  }
- .service-card:hover {
- border-color: rgba(91,106,240,0.35);
- transform: translateY(-4px);
- box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+ .service-card:hover::before { opacity: 1; }
+
+ /* Glow orb */
+ .service-card::after {
+ content: "";
+ position: absolute;
+ width: 200px; height: 200px;
+ border-radius: 50%;
+ top: -60px; right: -60px;
+ opacity: 0;
+ transition: opacity 0.5s ease;
+ pointer-events: none;
+ filter: blur(60px);
  }
- .service-card:hover::before { transform: scaleX(1); }
  .service-card:hover::after { opacity: 1; }
 
+ /* Per-card accent colors */
+ .service-card:nth-child(1) { background: linear-gradient(145deg, #0f0f20, #14132a); }
+ .service-card:nth-child(1)::after { background: rgba(91,106,240,0.5); }
+ .service-card:nth-child(2)::after { background: rgba(168,85,247,0.4); }
+ .service-card:nth-child(3)::after { background: rgba(20,184,166,0.4); }
+ .service-card:nth-child(4)::after { background: rgba(232,99,74,0.4); }
+ .service-card:nth-child(5)::after { background: rgba(251,191,36,0.3); }
+ .service-card:nth-child(6)::after { background: rgba(34,197,94,0.35); }
+ .service-card:nth-child(7)::after { background: rgba(91,106,240,0.35); }
+
+ .service-card:hover {
+ transform: translateY(-4px);
+ box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+ border-color: rgba(255,255,255,0.1);
+ }
+
+ /* Featured first card */
+ .service-card:nth-child(1) .service-icon {
+ width: 64px; height: 64px;
+ border-radius: 16px;
+ margin-bottom: 32px;
+ }
+ .service-card:nth-child(1) h3 {
+ font-size: 32px;
+ margin-bottom: 16px;
+ }
+ .service-card:nth-child(1) p { font-size: 17px; }
+
+ /* Last card (booking) — horizontal layout */
+ .service-card:nth-child(7) {
+ flex-direction: row;
+ align-items: center;
+ gap: 40px;
+ padding: 36px 48px;
+ }
+ .service-card:nth-child(7) .service-icon { margin-bottom: 0; flex-shrink: 0; }
+ .service-card:nth-child(7) .svc-text { flex: 1; }
+ .service-card:nth-child(7) h3 { margin-bottom: 8px; }
 
  .service-icon {
- width: 48px; height: 48px;
- background: rgba(91,106,240,0.1);
- border: 1px solid var(--border);
- border-radius: 10px;
+ width: 52px; height: 52px;
+ border-radius: 12px;
  display: flex;
  align-items: center;
  justify-content: center;
- margin-bottom: 24px;
- transition: background 0.3s ease, border-color 0.3s ease;
+ margin-bottom: 28px;
  flex-shrink: 0;
+ position: relative;
+ z-index: 1;
  }
- .service-card:hover .service-icon {
- background: rgba(91,106,240,0.2);
- border-color: rgba(91,106,240,0.5);
- }
+ /* Icon color per card */
+ .service-card:nth-child(1) .service-icon { background: rgba(91,106,240,0.2); border: 1px solid rgba(91,106,240,0.4); }
+ .service-card:nth-child(2) .service-icon { background: rgba(168,85,247,0.15); border: 1px solid rgba(168,85,247,0.35); }
+ .service-card:nth-child(3) .service-icon { background: rgba(20,184,166,0.15); border: 1px solid rgba(20,184,166,0.35); }
+ .service-card:nth-child(4) .service-icon { background: rgba(232,99,74,0.15); border: 1px solid rgba(232,99,74,0.35); }
+ .service-card:nth-child(5) .service-icon { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.3); }
+ .service-card:nth-child(6) .service-icon { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); }
+ .service-card:nth-child(7) .service-icon { background: rgba(91,106,240,0.15); border: 1px solid rgba(91,106,240,0.35); }
+
  .service-icon svg {
- width: 22px; height: 22px;
- stroke: var(--accent);
+ width: 24px; height: 24px;
  fill: none;
  stroke-width: 1.5;
  stroke-linecap: round;
  stroke-linejoin: round;
  }
+ .service-card:nth-child(1) .service-icon svg { stroke: #7b8fff; }
+ .service-card:nth-child(2) .service-icon svg { stroke: #c084fc; }
+ .service-card:nth-child(3) .service-icon svg { stroke: #2dd4bf; }
+ .service-card:nth-child(4) .service-icon svg { stroke: #f87171; }
+ .service-card:nth-child(5) .service-icon svg { stroke: #fbbf24; }
+ .service-card:nth-child(6) .service-icon svg { stroke: #4ade80; }
+ .service-card:nth-child(7) .service-icon svg { stroke: #7b8fff; }
+
  .service-card h3 {
  font-family: var(--font-display);
  font-size: 24px;
@@ -405,6 +467,8 @@
  letter-spacing: -0.02em;
  margin-bottom: 12px;
  color: var(--light);
+ position: relative;
+ z-index: 1;
  }
  .service-card p {
  font-size: 15px;
@@ -412,6 +476,8 @@
  color: var(--mid);
  line-height: 1.8;
  flex: 1;
+ position: relative;
+ z-index: 1;
  }
  .service-arrow {
  display: inline-flex;
@@ -420,23 +486,32 @@
  margin-top: 24px;
  font-family: var(--font-mono);
  font-size: 10px;
- font-weight: 400;
  letter-spacing: 0.12em;
  text-transform: uppercase;
  color: var(--accent);
  opacity: 0;
  transform: translateX(-6px);
  transition: opacity 0.3s ease, transform 0.3s ease;
+ position: relative;
+ z-index: 1;
  }
- .service-card:hover .service-arrow {
- opacity: 1;
- transform: translateX(0);
+ .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+
+ @media (max-width: 1024px) {
+ .services-grid { grid-template-columns: repeat(4, 1fr); }
+ .service-card:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+ .service-card:nth-child(2) { grid-column: span 2; }
+ .service-card:nth-child(3) { grid-column: span 2; }
+ .service-card:nth-child(4) { grid-column: span 2; }
+ .service-card:nth-child(5) { grid-column: span 2; }
+ .service-card:nth-child(6) { grid-column: span 2; }
+ .service-card:nth-child(7) { grid-column: span 4; flex-direction: column; }
+ .service-card:nth-child(7) .service-icon { margin-bottom: 24px; }
  }
- @media (max-width: 900px) {
- .services-grid { grid-template-columns: 1fr 1fr; }
- }
- @media (max-width: 560px) {
+ @media (max-width: 640px) {
  .services-grid { grid-template-columns: 1fr; }
+ .service-card:nth-child(n) { grid-column: span 1; grid-row: span 1; }
+ .service-card:nth-child(7) { flex-direction: column; padding: 36px; }
  }
 
  /* HOW IT WORKS */
@@ -1070,9 +1145,11 @@
  </div>
  <div class="service-card">
  <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
+ <div class="svc-text">
  <h3>Booking &amp; Scheduling Integrations</h3>
  <p>We integrate third-party booking platforms — Calendly, Acuity, OpenTable, and more — so your clients can reserve appointments or tables directly from your site.</p>
  <span class="service-arrow">Learn more →</span>
+ </div>
  </div>
  </div>
  </div>
