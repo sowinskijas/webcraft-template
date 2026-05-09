@@ -827,13 +827,66 @@
  .container { padding: 0 20px; }
  }
 
- /* CALENDLY EMBED */
- .calendly-wrap {
- border-radius: 12px;
- overflow: hidden;
- border: 1px solid var(--border);
- max-width: 900px;
+ /* BOOKING FORM */
+ .booking-wrap {
+ max-width: 680px;
  margin: 0 auto;
+ background: var(--dark-2);
+ border: 1px solid var(--border);
+ border-radius: 12px;
+ padding: 48px;
+ }
+ .booking-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 16px;
+ margin-bottom: 16px;
+ }
+ .booking-field {
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ margin-bottom: 16px;
+ }
+ .booking-field label {
+ font-family: var(--font-mono);
+ font-size: 10px;
+ font-weight: 400;
+ letter-spacing: 0.14em;
+ text-transform: uppercase;
+ color: var(--mid);
+ }
+ .booking-field input,
+ .booking-field select,
+ .booking-field textarea {
+ background: var(--dark-3);
+ border: 1px solid var(--border-subtle);
+ border-radius: 6px;
+ padding: 14px 16px;
+ font-family: var(--font-body);
+ font-size: 15px;
+ color: var(--light);
+ outline: none;
+ transition: border-color 0.2s;
+ width: 100%;
+ }
+ .booking-field input::placeholder,
+ .booking-field textarea::placeholder { color: var(--mid); }
+ .booking-field input:focus,
+ .booking-field select:focus,
+ .booking-field textarea:focus { border-color: var(--accent); }
+ .booking-field select option { background: var(--dark-3); color: var(--light); }
+ .booking-field textarea { resize: vertical; min-height: 110px; }
+ .booking-submit {
+ width: 100%;
+ justify-content: center;
+ margin-top: 8px;
+ font-size: 14px;
+ padding: 16px;
+ }
+ @media (max-width: 600px) {
+ .booking-grid { grid-template-columns: 1fr; }
+ .booking-wrap { padding: 28px 20px; }
  }
 
  /* SCROLL ANIMATIONS */
@@ -1146,15 +1199,47 @@
  <span class="badge">Let's Talk</span>
  <h2 class="section-title">Book a free<br /><em>discovery call</em></h2>
  <p class="section-sub" style="margin:0 auto 48px;">Pick a time that works for you. No pressure, no pitch — just a conversation about your project.</p>
- <!-- Calendly inline embed — replace the data-url with your own Calendly link -->
- <div class="calendly-wrap">
- <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
- <div class="calendly-inline-widget"
- data-url="https://calendly.com/hello-webvio/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0e0e1a&text_color=f4f4f8&primary_color=5b6af0"
- style="min-width:300px;height:660px;"></div>
- <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+ <div class="booking-wrap">
+ <form onsubmit="handleBooking(event)">
+ <div class="booking-grid">
+ <div class="booking-field">
+ <label>First Name</label>
+ <input type="text" placeholder="Jake" required />
  </div>
- <p style="margin-top:24px;font-size:14px;color:var(--mid);text-align:center;">Prefer email? Reach us at <a href="mailto:hello@webvio.com" style="color:var(--accent);">hello@webvio.com</a></p>
+ <div class="booking-field">
+ <label>Last Name</label>
+ <input type="text" placeholder="Smith" required />
+ </div>
+ </div>
+ <div class="booking-field">
+ <label>Email Address</label>
+ <input type="email" placeholder="you@example.com" required />
+ </div>
+ <div class="booking-field">
+ <label>Phone Number</label>
+ <input type="tel" placeholder="(555) 123-4567" />
+ </div>
+ <div class="booking-field">
+ <label>What type of project?</label>
+ <select required>
+ <option value="" disabled selected>Select a service...</option>
+ <option>New Website</option>
+ <option>Redesign Existing Site</option>
+ <option>E-Commerce Store</option>
+ <option>Booking / Scheduling Integration</option>
+ <option>SEO &amp; Copywriting</option>
+ <option>Maintenance &amp; Support</option>
+ <option>Other</option>
+ </select>
+ </div>
+ <div class="booking-field">
+ <label>Tell us about your project</label>
+ <textarea placeholder="Brief description of what you need, your timeline, and any relevant details..."></textarea>
+ </div>
+ <button type="submit" class="btn btn-primary booking-submit">Request a Free Call →</button>
+ </form>
+ <p style="margin-top:20px;font-size:13px;color:var(--mid);text-align:center;">We'll reach out within 24 hours to confirm a time. Prefer email? <a href="mailto:hello@webvio.com" style="color:var(--accent);">hello@webvio.com</a></p>
+ </div>
  </div>
  </div>
  </section>
@@ -1206,6 +1291,23 @@
  </footer>
 
  <script>
+ // Booking form
+ function handleBooking(e) {
+ e.preventDefault();
+ const btn = e.target.querySelector('.booking-submit');
+ btn.textContent = 'Sent! We\'ll be in touch soon.';
+ btn.disabled = true;
+ btn.style.background = '#2a9d5c';
+ btn.style.boxShadow = 'none';
+ e.target.reset();
+ setTimeout(() => {
+ btn.textContent = 'Request a Free Call →';
+ btn.disabled = false;
+ btn.style.background = '';
+ btn.style.boxShadow = '';
+ }, 4000);
+ }
+
  // Navbar scroll effect
  const navbar = document.getElementById("navbar");
  window.addEventListener("scroll", () => {
