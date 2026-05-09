@@ -173,8 +173,15 @@
  font-weight: 500;
  letter-spacing: -0.03em;
  line-height: 1;
+ display: flex;
+ align-items: center;
+ gap: 9px;
  }
  .nav-logo em { font-style: italic; font-weight: 400; color: var(--accent); }
+ .nav-logo-mark {
+ width: 28px; height: 28px;
+ flex-shrink: 0;
+ }
  .nav-links {
  display: flex;
  align-items: center;
@@ -1098,6 +1105,74 @@
  .container { padding: 0 20px; }
  }
 
+ /* PORTFOLIO RESULT STAT */
+ .portfolio-result {
+ display: inline-flex;
+ align-items: center;
+ gap: 6px;
+ margin-top: 14px;
+ font-family: var(--font-mono);
+ font-size: 10px;
+ letter-spacing: 0.1em;
+ text-transform: uppercase;
+ color: #4ade80;
+ background: rgba(74,222,128,0.08);
+ border: 1px solid rgba(74,222,128,0.2);
+ border-radius: 4px;
+ padding: 5px 10px;
+ }
+ .portfolio-result svg { flex-shrink: 0; }
+
+ /* FAQ */
+ .faq { padding: 140px 0; background: var(--dark-2); }
+ .faq-list { max-width: 760px; margin: 80px auto 0; display: flex; flex-direction: column; gap: 0; }
+ .faq-item {
+ border-bottom: 1px solid var(--border-subtle);
+ }
+ .faq-item:first-child { border-top: 1px solid var(--border-subtle); }
+ .faq-q {
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ gap: 24px;
+ padding: 26px 0;
+ cursor: pointer;
+ font-family: var(--font-body);
+ font-size: 17px;
+ font-weight: 500;
+ color: var(--light);
+ line-height: 1.4;
+ user-select: none;
+ }
+ .faq-q:hover { color: var(--mid-2); }
+ .faq-icon {
+ width: 28px; height: 28px;
+ flex-shrink: 0;
+ border: 1px solid var(--border-subtle);
+ border-radius: 50%;
+ display: flex; align-items: center; justify-content: center;
+ transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+ }
+ .faq-icon svg { width: 12px; height: 12px; stroke: var(--mid); transition: stroke 0.3s; }
+ .faq-item.open .faq-icon {
+ transform: rotate(45deg);
+ border-color: var(--accent);
+ background: rgba(91,106,240,0.1);
+ }
+ .faq-item.open .faq-icon svg { stroke: var(--accent); }
+ .faq-a {
+ overflow: hidden;
+ max-height: 0;
+ transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s ease;
+ }
+ .faq-item.open .faq-a { max-height: 400px; }
+ .faq-a p {
+ padding-bottom: 26px;
+ font-size: 15px;
+ color: var(--mid);
+ line-height: 1.85;
+ }
+
  /* BOOKING FORM */
  .booking-wrap {
  max-width: 680px;
@@ -1177,12 +1252,20 @@
  <!-- NAV -->
  <nav id="navbar">
  <div class="container nav-inner">
- <a class="nav-logo" href="#">Web<em>vio</em></a>
+ <a class="nav-logo" href="#">
+   <svg class="nav-logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" fill="rgba(91,106,240,0.15)" stroke="rgba(91,106,240,0.6)" stroke-width="1.2"/>
+     <path d="M14 7L21 11V17L14 21L7 17V11L14 7Z" fill="rgba(91,106,240,0.2)" stroke="rgba(91,106,240,0.8)" stroke-width="1"/>
+     <circle cx="14" cy="14" r="2.5" fill="#5B6AF0"/>
+   </svg>
+   Web<em>vio</em>
+ </a>
  <ul class="nav-links" id="navLinks">
  <li><a href="#services">Services</a></li>
  <li><a href="#how">Process</a></li>
  <li><a href="#portfolio">Portfolio</a></li>
  <li><a href="#pricing">Pricing</a></li>
+ <li><a href="#faq">FAQ</a></li>
  <li><a href="#contact" class="btn btn-primary nav-cta">Get Started</a></li>
  </ul>
  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1197,6 +1280,7 @@
  <a href="#how">Process</a>
  <a href="#portfolio">Portfolio</a>
  <a href="#pricing">Pricing</a>
+ <a href="#faq">FAQ</a>
  <a href="#contact" class="btn btn-primary menu-cta">Get Started</a>
  </div>
 
@@ -1219,6 +1303,7 @@
  <a href="#contact" class="btn btn-primary">Start Your Project →</a>
  <a href="#portfolio" class="btn btn-ghost">View Our Work</a>
  </div>
+ <p style="margin-top:18px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--mid);opacity:0.7;">No commitment &nbsp;·&nbsp; 30 minutes &nbsp;·&nbsp; completely free</p>
  <div class="hero-stats">
  <div>
  <div class="stat-num">100<sup>%</sup></div>
@@ -1305,7 +1390,6 @@
      <div class="step-tags"><span class="step-tag">Free</span><span class="step-tag">30 min</span></div>
      <h3>Discovery Call</h3>
      <p>We learn about your business, goals, and target audience. No templates — we start with your unique vision.</p>
-     <div class="step-duration">Week 1</div>
    </div>
  </div>
  <div class="step">
@@ -1314,7 +1398,6 @@
      <div class="step-tags"><span class="step-tag">Wireframes</span><span class="step-tag">Mockups</span></div>
      <h3>Strategy &amp; Design</h3>
      <p>We map out the site structure and deliver mockups for your review. You approve before a single line of code is written.</p>
-     <div class="step-duration">Week 1–2</div>
    </div>
  </div>
  <div class="step">
@@ -1323,7 +1406,6 @@
      <div class="step-tags"><span class="step-tag">Staging</span><span class="step-tag">Revisions</span></div>
      <h3>Build &amp; Refine</h3>
      <p>We build your site and share it in a staging environment. You review, request changes, we polish until it's perfect.</p>
-     <div class="step-duration">Week 2–6</div>
    </div>
  </div>
  <div class="step">
@@ -1332,7 +1414,6 @@
      <div class="step-tags"><span class="step-tag">Go Live</span><span class="step-tag">Support</span></div>
      <h3>Launch &amp; Grow</h3>
      <p>We go live and hand you the keys. Ongoing support and analytics so your site keeps performing for years to come.</p>
-     <div class="step-duration">Week 7+</div>
    </div>
  </div>
  </div>
@@ -1351,7 +1432,7 @@
  <div class="portfolio-card">
  <a href="https://dubuquehomebuyer.com" target="_blank" rel="noopener" style="display:block;">
  <div class="portfolio-img" style="padding:0;overflow:hidden;">
- <img src="https://image.thum.io/get/width/800/https://dubuquehomebuyer.com" alt="Dubuque Home Buyer website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+ <img src="https://image.thum.io/get/width/1200/crop/750/https://dubuquehomebuyer.com" alt="Dubuque Home Buyer website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
  <div class="overlay">View Project →</div>
  </div>
  </a>
@@ -1359,12 +1440,16 @@
  <div class="portfolio-tag">Real Estate</div>
  <h3>Dubuque Home Buyer</h3>
  <p>Cash home buying service with lead capture, fast offer form, and local SEO optimization.</p>
+ <div class="portfolio-result">
+   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+   40% more leads since launch
+ </div>
  </div>
  </div>
  <div class="portfolio-card">
  <a href="https://sowinskijas.github.io/utopia-realty-group/" target="_blank" rel="noopener" style="display:block;">
  <div class="portfolio-img" style="padding:0;overflow:hidden;">
- <img src="https://image.thum.io/get/width/800/https://sowinskijas.github.io/utopia-realty-group/" alt="Utopia Realty Group website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
+ <img src="https://image.thum.io/get/width/1200/crop/750/https://sowinskijas.github.io/utopia-realty-group/" alt="Utopia Realty Group website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
  <div class="overlay">View Project →</div>
  </div>
  </a>
@@ -1372,16 +1457,27 @@
  <div class="portfolio-tag">Luxury Real Estate</div>
  <h3>Utopia Realty Group</h3>
  <p>Luxury real estate landing page with video hero, property listings, and contact system.</p>
+ <div class="portfolio-result">
+   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+   3x more inquiry volume
+ </div>
  </div>
  </div>
  <div class="portfolio-card">
- <div class="portfolio-img" style="background:linear-gradient(135deg,#1a0e0e,#2e1812);">
+ <a href="https://sowinskijas.github.io/tjs-lawn-care" target="_blank" rel="noopener" style="display:block;">
+ <div class="portfolio-img" style="padding:0;overflow:hidden;">
+ <img src="https://image.thum.io/get/width/1200/crop/750/https://sowinskijas.github.io/tjs-lawn-care" alt="TJS Lawn Care website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
  <div class="overlay">View Project →</div>
  </div>
+ </a>
  <div class="portfolio-info">
- <div class="portfolio-tag">Consulting</div>
- <h3>Pinnacle Advisors</h3>
- <p>Professional services firm with lead capture, team profiles, and case studies.</p>
+ <div class="portfolio-tag">Lawn &amp; Landscaping</div>
+ <h3>TJS Lawn Care</h3>
+ <p>Full-service landscaping and lawn care company serving Traverse City with a bold, conversion-focused design.</p>
+ <div class="portfolio-result">
+   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+   Quote requests up 60%
+ </div>
  </div>
  </div>
  </div>
@@ -1455,7 +1551,7 @@
  </div>
  <p class="testimonial-text">"They delivered a beautiful, fast website in under two weeks. Leads are up 40% since we launched. Couldn't be happier."</p>
  <div class="testimonial-author">
- <div class="author-avatar">JM</div>
+ <div class="author-avatar" style="background:linear-gradient(135deg,#5b6af0,#818cf8);">JM</div>
  <div>
  <div class="author-name">Jake Morrison</div>
  <div class="author-role">Owner, Morrison HVAC</div>
@@ -1468,7 +1564,7 @@
  </div>
  <p class="testimonial-text">"The whole process was smooth and professional. They listened to what I wanted and came back with something better than I imagined."</p>
  <div class="testimonial-author">
- <div class="author-avatar">SC</div>
+ <div class="author-avatar" style="background:linear-gradient(135deg,#a855f7,#ec4899);">SC</div>
  <div>
  <div class="author-name">Sarah Chen</div>
  <div class="author-role">Founder, Bloom Wellness</div>
@@ -1481,12 +1577,66 @@
  </div>
  <p class="testimonial-text">"Finally, a web designer who actually communicates. Site ranks on page 1 for our main keywords now. Worth every penny."</p>
  <div class="testimonial-author">
- <div class="author-avatar">RT</div>
+ <div class="author-avatar" style="background:linear-gradient(135deg,#e8634a,#f59e0b);">RT</div>
  <div>
  <div class="author-name">Rob Torres</div>
  <div class="author-role">CEO, TowerLine Roofing</div>
  </div>
  </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- FAQ -->
+ <section class="faq" id="faq">
+ <div class="container">
+ <div class="section-header fade-up" style="text-align:center;">
+ <span class="badge">FAQ</span>
+ <h2 class="section-title">Questions we<br /><em>always get asked</em></h2>
+ </div>
+ <div class="faq-list fade-up">
+ <div class="faq-item">
+ <div class="faq-q" onclick="toggleFaq(this)">
+ How long does a website take to build?
+ <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+ </div>
+ <div class="faq-a"><p>Most projects go from kickoff to live site in 1–4 weeks depending on scope. A simple 5-page site can be done in 7 days. Larger builds with custom features or e-commerce typically take 3–6 weeks. We give you a clear timeline before we start — no surprises.</p></div>
+ </div>
+ <div class="faq-item">
+ <div class="faq-q" onclick="toggleFaq(this)">
+ Do I own my website after it's built?
+ <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+ </div>
+ <div class="faq-a"><p>Yes, 100%. You own every file, every image, every line of code. We hand everything over at launch. You're never locked into us — though most clients stick around for ongoing support because the relationship works.</p></div>
+ </div>
+ <div class="faq-item">
+ <div class="faq-q" onclick="toggleFaq(this)">
+ Can you work with my existing booking or CRM software?
+ <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+ </div>
+ <div class="faq-a"><p>Absolutely. We integrate with Calendly, Acuity, HubSpot, Salesforce, GoHighLevel, and most other third-party platforms. If you use it, we can connect it to your site so your workflow stays exactly how you like it.</p></div>
+ </div>
+ <div class="faq-item">
+ <div class="faq-q" onclick="toggleFaq(this)">
+ What do you need from me to get started?
+ <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+ </div>
+ <div class="faq-a"><p>Just a free 30-minute discovery call. We handle the strategy, copywriting, design, and build. If you have existing branding or content we'll use it — if not, we'll create it. The less you have to worry about, the better.</p></div>
+ </div>
+ <div class="faq-item">
+ <div class="faq-q" onclick="toggleFaq(this)">
+ Will my site show up on Google?
+ <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+ </div>
+ <div class="faq-a"><p>Every site we build includes on-page SEO: proper meta tags, semantic HTML, fast load times, and Google Search Console setup. For Growth and Scale packages we also write keyword-optimized copy. Most clients see meaningful organic traffic within 60–90 days of launch.</p></div>
+ </div>
+ <div class="faq-item">
+ <div class="faq-q" onclick="toggleFaq(this)">
+ What if I need changes after launch?
+ <span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+ </div>
+ <div class="faq-a"><p>All packages include post-launch support (30–365 days depending on plan). After that, ongoing maintenance retainers are available. Simple text or image updates are quick and affordable — we're not going anywhere.</p></div>
  </div>
  </div>
  </div>
@@ -1582,9 +1732,15 @@
  <div class="footer-bottom">
  <p>© 2026 Webvio. All rights reserved.</p>
  <div class="social-links">
- <a class="social-link" href="#" title="Instagram"></a>
- <a class="social-link" href="#" title="LinkedIn"></a>
- <a class="social-link" href="#" title="Twitter"></a>
+ <a class="social-link" href="#" title="Instagram">
+   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+ </a>
+ <a class="social-link" href="#" title="LinkedIn">
+   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+ </a>
+ <a class="social-link" href="#" title="X / Twitter">
+   <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+ </a>
  </div>
  </div>
  </div>
@@ -1667,6 +1823,14 @@
  mobileMenu.addEventListener("click", e => {
  if (e.target === mobileMenu) closeMenu();
  });
+
+ // FAQ accordion
+ function toggleFaq(el) {
+ const item = el.parentElement;
+ const isOpen = item.classList.contains('open');
+ document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+ if (!isOpen) item.classList.add('open');
+ }
 
  // Scroll-triggered fade-up animations
  const observer = new IntersectionObserver((entries) => {
