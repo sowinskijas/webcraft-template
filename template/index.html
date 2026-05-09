@@ -1293,28 +1293,28 @@
  <h2 class="section-title">Book a free<br /><em>discovery call</em></h2>
  <p class="section-sub" style="margin:0 auto 48px;">Pick a time that works for you. No pressure, no pitch — just a conversation about your project.</p>
  <div class="booking-wrap">
- <form action="https://formspree.io/f/mojrpvpr" method="POST" onsubmit="handleBooking(event)">
+ <form id="bookingForm" onsubmit="handleBooking(event)">
  <div class="booking-grid">
  <div class="booking-field">
- <label>First Name</label>
- <input type="text" placeholder="Jake" required />
+ <label for="firstName">First Name</label>
+ <input id="firstName" name="first_name" type="text" placeholder="Jake" required />
  </div>
  <div class="booking-field">
- <label>Last Name</label>
- <input type="text" placeholder="Smith" required />
+ <label for="lastName">Last Name</label>
+ <input id="lastName" name="last_name" type="text" placeholder="Smith" required />
  </div>
  </div>
  <div class="booking-field">
- <label>Email Address</label>
- <input type="email" placeholder="you@example.com" required />
+ <label for="email">Email Address</label>
+ <input id="email" name="email" type="email" placeholder="you@example.com" required />
  </div>
  <div class="booking-field">
- <label>Phone Number</label>
- <input type="tel" placeholder="(555) 123-4567" />
+ <label for="phone">Phone Number</label>
+ <input id="phone" name="phone" type="tel" placeholder="(555) 123-4567" />
  </div>
  <div class="booking-field">
- <label>What type of project?</label>
- <select required>
+ <label for="projectType">What type of project?</label>
+ <select id="projectType" name="project_type" required>
  <option value="" disabled selected>Select a service...</option>
  <option>New Website</option>
  <option>Redesign Existing Site</option>
@@ -1326,8 +1326,8 @@
  </select>
  </div>
  <div class="booking-field">
- <label>Tell us about your project</label>
- <textarea placeholder="Brief description of what you need, your timeline, and any relevant details..."></textarea>
+ <label for="message">Tell us about your project</label>
+ <textarea id="message" name="message" placeholder="Brief description of what you need, your timeline, and any relevant details..."></textarea>
  </div>
  <button type="submit" class="btn btn-primary booking-submit">Request a Free Call →</button>
  </form>
@@ -1385,20 +1385,39 @@
 
  <script>
  // Booking form
- function handleBooking(e) {
+ async function handleBooking(e) {
  e.preventDefault();
- const btn = e.target.querySelector('.booking-submit');
- btn.textContent = 'Sent! We\'ll be in touch soon.';
+ const form = e.target;
+ const btn = form.querySelector('.booking-submit');
+ const original = btn.textContent;
+ btn.textContent = 'Sending...';
  btn.disabled = true;
+ try {
+ const res = await fetch('https://formspree.io/f/mojrpvpr', {
+ method: 'POST',
+ body: new FormData(form),
+ headers: { 'Accept': 'application/json' }
+ });
+ if (res.ok) {
+ btn.textContent = 'Sent! We\'ll be in touch soon.';
  btn.style.background = '#2a9d5c';
  btn.style.boxShadow = 'none';
- e.target.reset();
+ form.reset();
  setTimeout(() => {
- btn.textContent = 'Request a Free Call →';
+ btn.textContent = original;
  btn.disabled = false;
  btn.style.background = '';
  btn.style.boxShadow = '';
- }, 4000);
+ }, 5000);
+ } else {
+ const data = await res.json();
+ btn.textContent = data.error || 'Something went wrong. Try again.';
+ btn.disabled = false;
+ }
+ } catch {
+ btn.textContent = 'Network error. Please try again.';
+ btn.disabled = false;
+ }
  }
 
  // Navbar scroll effect
