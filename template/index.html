@@ -237,6 +237,26 @@
  linear-gradient(90deg, rgba(91,106,240,0.04) 1px, transparent 1px);
  background-size: 72px 72px;
  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
+ transition: background-image 0.1s ease;
+ }
+ /* Interactive spotlight overlay — position driven by JS custom props */
+ .hero-grid::after {
+ content: "";
+ position: absolute;
+ inset: 0;
+ background: radial-gradient(
+   600px circle at var(--mx, 50%) var(--my, 50%),
+   rgba(91,106,240,0.13) 0%,
+   rgba(91,106,240,0.04) 40%,
+   transparent 70%
+ );
+ background-image:
+ radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%), rgba(91,106,240,0.13) 0%, transparent 70%),
+ linear-gradient(rgba(91,106,240,0.07) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(91,106,240,0.07) 1px, transparent 1px);
+ background-size: 100% 100%, 72px 72px, 72px 72px;
+ opacity: var(--grid-opacity, 0);
+ transition: opacity 0.4s ease;
  }
  .hero-content { position: relative; z-index: 1; max-width: 780px; }
  .hero-eyebrow {
@@ -1823,6 +1843,28 @@
  mobileMenu.addEventListener("click", e => {
  if (e.target === mobileMenu) closeMenu();
  });
+
+ // Interactive hero grid — mouse spotlight
+ (function() {
+ const hero = document.querySelector('.hero');
+ const grid = document.querySelector('.hero-grid');
+ if (!hero || !grid) return;
+ let raf;
+ hero.addEventListener('mousemove', (e) => {
+   cancelAnimationFrame(raf);
+   raf = requestAnimationFrame(() => {
+     const rect = hero.getBoundingClientRect();
+     const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(2) + '%';
+     const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(2) + '%';
+     grid.style.setProperty('--mx', x);
+     grid.style.setProperty('--my', y);
+     grid.style.setProperty('--grid-opacity', '1');
+   });
+ });
+ hero.addEventListener('mouseleave', () => {
+   grid.style.setProperty('--grid-opacity', '0');
+ });
+ })();
 
  // FAQ accordion
  function toggleFaq(el) {
