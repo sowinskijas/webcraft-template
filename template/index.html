@@ -709,6 +709,10 @@
  border: 1px solid var(--border-subtle);
  background: var(--dark-2);
  transition: var(--transition);
+ cursor: pointer;
+ display: block;
+ color: inherit;
+ text-decoration: none;
  }
  .portfolio-card:hover {
  transform: translateY(-5px);
@@ -1463,13 +1467,10 @@
  <p class="section-sub">A selection of recent client websites across various industries.</p>
  </div>
  <div class="portfolio-grid fade-up">
- <div class="portfolio-card">
- <a href="https://dubuquehomebuyer.com" target="_blank" rel="noopener" style="display:block;">
+ <a class="portfolio-card" href="https://dubuquehomebuyer.com" target="_blank" rel="noopener">
  <div class="portfolio-img" style="padding:0;overflow:hidden;">
  <img src="images/dubuque-screenshot.jpg" alt="Dubuque Home Buyer website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
- <div class="overlay">View Project →</div>
  </div>
- </a>
  <div class="portfolio-info">
  <div class="portfolio-tag">Real Estate</div>
  <h3>Dubuque Home Buyer</h3>
@@ -1479,14 +1480,11 @@
    40% more leads since launch
  </div>
  </div>
- </div>
- <div class="portfolio-card">
- <a href="https://sowinskijas.github.io/utopia-realty-group/" target="_blank" rel="noopener" style="display:block;">
+ </a>
+ <a class="portfolio-card" href="https://sowinskijas.github.io/utopia-realty-group/" target="_blank" rel="noopener">
  <div class="portfolio-img" style="padding:0;overflow:hidden;">
  <img src="images/utopia-screenshot.jpg" alt="Utopia Realty Group website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
- <div class="overlay">View Project →</div>
  </div>
- </a>
  <div class="portfolio-info">
  <div class="portfolio-tag">Luxury Real Estate</div>
  <h3>Utopia Realty Group</h3>
@@ -1496,14 +1494,11 @@
    3x more inquiry volume
  </div>
  </div>
- </div>
- <div class="portfolio-card">
- <a href="https://sowinskijas.github.io/tjs-lawn-care" target="_blank" rel="noopener" style="display:block;">
+ </a>
+ <a class="portfolio-card" href="https://sowinskijas.github.io/tjs-lawn-care" target="_blank" rel="noopener">
  <div class="portfolio-img" style="padding:0;overflow:hidden;">
  <img src="images/tjs-screenshot.jpg" alt="TJS Lawn Care website screenshot" style="width:100%;height:100%;object-fit:cover;display:block;" loading="lazy" />
- <div class="overlay">View Project →</div>
  </div>
- </a>
  <div class="portfolio-info">
  <div class="portfolio-tag">Lawn &amp; Landscaping</div>
  <h3>TJS Lawn Care</h3>
@@ -1513,7 +1508,7 @@
    Quote requests up 60%
  </div>
  </div>
- </div>
+ </a>
  </div>
  </div>
  </section>
