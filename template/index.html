@@ -222,19 +222,55 @@
  overflow: hidden;
  padding: 140px 0 100px;
  }
+
+ /* YouTube video background */
+ .hero-video-wrap {
+ position: absolute;
+ inset: 0;
+ z-index: 0;
+ overflow: hidden;
+ pointer-events: none;
+ }
+ .hero-video-wrap iframe {
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+ width: 100vw;
+ height: 56.25vw; /* 16:9 */
+ min-height: 100vh;
+ min-width: 177.78vh; /* 16:9 */
+ pointer-events: none;
+ border: none;
+ }
+ /* Dark overlay so text stays readable */
+ .hero-video-overlay {
+ position: absolute;
+ inset: 0;
+ z-index: 1;
+ background: linear-gradient(
+   to bottom,
+   rgba(8,8,16,0.72) 0%,
+   rgba(8,8,16,0.55) 50%,
+   rgba(8,8,16,0.80) 100%
+ );
+ }
+
  .hero-bg {
  position: absolute;
  inset: 0;
+ z-index: 2;
  background:
- radial-gradient(ellipse 70% 55% at 65% 35%, rgba(91,106,240,0.12) 0%, transparent 65%),
- radial-gradient(ellipse 35% 40% at 15% 85%, rgba(232,99,74,0.07) 0%, transparent 55%);
+ radial-gradient(ellipse 70% 55% at 65% 35%, rgba(91,106,240,0.10) 0%, transparent 65%),
+ radial-gradient(ellipse 35% 40% at 15% 85%, rgba(232,99,74,0.06) 0%, transparent 55%);
  }
  .hero-grid {
  position: absolute;
  inset: 0;
+ z-index: 2;
  background-image:
- linear-gradient(rgba(91,106,240,0.04) 1px, transparent 1px),
- linear-gradient(90deg, rgba(91,106,240,0.04) 1px, transparent 1px);
+ linear-gradient(rgba(91,106,240,0.03) 1px, transparent 1px),
+ linear-gradient(90deg, rgba(91,106,240,0.03) 1px, transparent 1px);
  background-size: 72px 72px;
  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 80%);
  }
@@ -1286,9 +1322,18 @@
 
  <!-- HERO -->
  <section class="hero">
+ <div class="hero-video-wrap">
+ <iframe
+ src="https://www.youtube.com/embed/aqYIaPMFwgE?autoplay=1&mute=1&loop=1&playlist=aqYIaPMFwgE&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&disablekb=1&fs=0&playsinline=1"
+ allow="autoplay; encrypted-media"
+ allowfullscreen
+ title="background video"
+ ></iframe>
+ </div>
+ <div class="hero-video-overlay"></div>
  <div class="hero-bg"></div>
  <div class="hero-grid"></div>
- <div class="container">
+ <div class="container" style="position:relative;z-index:3;">
  <div class="hero-content">
  <div class="hero-eyebrow">
  <div class="hero-dot"></div>
