@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>Webvio | Professional Website Design</title>
+ <title>UpscaleSites | Professional Website Design</title>
  <meta name="description" content="We build fast, beautiful websites that grow your business. Custom design, SEO-ready, and delivered on time." />
  <link rel="preconnect" href="https://fonts.googleapis.com" />
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -171,13 +171,13 @@
  font-family: var(--font-display);
  font-size: 20px;
  font-weight: 500;
- letter-spacing: -0.03em;
+ letter-spacing: -0.06em;
  line-height: 1;
  display: flex;
  align-items: center;
  gap: 8px;
  }
- .nav-logo em { font-style: italic; font-weight: 400; color: var(--accent); }
+ .nav-logo em { font-style: italic; font-weight: 400; color: #a0aaff; letter-spacing: -0.04em; }
  .nav-logo-mark {
  width: 28px; height: 28px;
  flex-shrink: 0;
@@ -198,6 +198,7 @@
  transition: color 0.2s;
  }
  .nav-links a:hover { color: var(--light); }
+ .nav-links a.btn-primary { color: #fff !important; }
  .nav-cta { margin-left: 8px; }
  .hamburger {
  display: none;
@@ -501,6 +502,9 @@
  z-index: 1;
  }
  .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
+ @media (max-width: 768px) {
+ .service-card.touch-revealed .service-arrow { opacity: 1; transform: translateX(0); }
+ }
 
  @media (max-width: 1024px) {
  .services-grid { grid-template-columns: repeat(4, 1fr); }
@@ -1015,6 +1019,8 @@
  .steps { grid-template-columns: 1fr; }
  .hero { padding-bottom: 48px; }
  .services { padding-top: 56px; }
+ .service-card:nth-child(7) { flex-direction: column !important; align-items: flex-start !important; padding: 32px 28px !important; }
+ .service-card:nth-child(7) .service-icon { margin-bottom: 24px !important; }
  }
 
  /* ── MOBILE MENU OVERLAY ── */
@@ -1287,8 +1293,7 @@
      <path d="M14 7L21 11V17L14 21L7 17V11L14 7Z" fill="rgba(91,106,240,0.2)" stroke="rgba(91,106,240,0.8)" stroke-width="1"/>
      <circle cx="14" cy="14" r="2.5" fill="#5B6AF0"/>
    </svg>
-   Web<em>vio</em>
- </a>
+   <span style="letter-spacing:-0.04em">Upscale<em style="letter-spacing:-0.04em">Sites</em></span></a>
  <ul class="nav-links" id="navLinks">
  <li><a href="#services">Services</a></li>
  <li><a href="#how">Process</a></li>
@@ -1307,7 +1312,7 @@
  <!-- MOBILE MENU OVERLAY -->
  <div id="mobileMenu">
  <div class="mobile-menu-header">
-   <a class="nav-logo" href="#" onclick="closeMenu()">Web<em>vio</em></a>
+   <a class="nav-logo" href="#" onclick="closeMenu()">Upscale<em>Sites</em></a>
    <button class="mobile-close" onclick="closeMenu()" aria-label="Close menu">
      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
    </button>
@@ -1728,7 +1733,7 @@
  <div class="container">
  <div class="footer-grid">
  <div class="footer-brand">
- <div class="nav-logo">Web<em>vio</em></div>
+ <div class="nav-logo"><span style="letter-spacing:-0.04em">Upscale<em style="letter-spacing:-0.04em;color:#a0aaff">Sites</em></span></div>
  <p>Custom websites built to grow your business. Fast, beautiful, and built to last.</p>
  </div>
  <div class="footer-col">
@@ -1759,7 +1764,7 @@
  </div>
  </div>
  <div class="footer-bottom">
- <p>© 2026 Webvio. All rights reserved.</p>
+ <p>© 2026 UpscaleSites. All rights reserved.</p>
  <div class="social-links">
  <a class="social-link" href="#" title="Instagram">
    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -1987,8 +1992,26 @@
  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
 
  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+
+ // Mobile: tap anywhere on a service card to reveal/hide "Learn more"
+ function initMobileServiceCards() {
+   if (window.innerWidth > 768) return;
+   document.querySelectorAll('.service-card').forEach(card => {
+     card.addEventListener('click', function(e) {
+       if (e.target.closest('.service-arrow')) return;
+       const isRevealed = card.classList.contains('touch-revealed');
+       document.querySelectorAll('.service-card.touch-revealed').forEach(c => c.classList.remove('touch-revealed'));
+       if (!isRevealed) card.classList.add('touch-revealed');
+     });
+   });
+   document.addEventListener('click', function(e) {
+     if (!e.target.closest('.service-card')) {
+       document.querySelectorAll('.service-card.touch-revealed').forEach(c => c.classList.remove('touch-revealed'));
+     }
+   });
+ }
+ initMobileServiceCards();
  </script>
 
 </body>
 </html>
-
