@@ -3,7 +3,7 @@
 <head>
  <meta charset="UTF-8" />
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- <title>UpscaleSites | Professional Website Design</title>
+ <title>Upscale Sites | Professional Website Design</title>
  <meta name="description" content="We build fast, beautiful websites that grow your business. Custom design, SEO-ready, and delivered on time." />
  <link rel="preconnect" href="https://fonts.googleapis.com" />
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -169,18 +169,19 @@
  }
  .nav-logo {
  font-family: var(--font-display);
- font-size: 20px;
+ font-size: 26px;
  font-weight: 500;
- letter-spacing: -0.06em;
+ letter-spacing: -0.03em;
  line-height: 1;
  display: flex;
  align-items: center;
- gap: 8px;
+ gap: 10px;
  }
- .nav-logo em { font-style: italic; font-weight: 400; color: #a0aaff; letter-spacing: -0.04em; }
+ .nav-logo em { font-style: italic; font-weight: 400; color: var(--accent); }
  .nav-logo-mark {
- width: 28px; height: 28px;
+ width: 36px; height: 36px;
  flex-shrink: 0;
+ filter: drop-shadow(0 0 8px rgba(91,106,240,0.45));
  }
  .nav-links {
  display: flex;
@@ -198,7 +199,6 @@
  transition: color 0.2s;
  }
  .nav-links a:hover { color: var(--light); }
- .nav-links a.btn-primary { color: #fff !important; }
  .nav-cta { margin-left: 8px; }
  .hamburger {
  display: none;
@@ -502,9 +502,6 @@
  z-index: 1;
  }
  .service-card:hover .service-arrow { opacity: 1; transform: translateX(0); }
- @media (max-width: 768px) {
- .service-card.touch-revealed .service-arrow { opacity: 1; transform: translateX(0); }
- }
 
  @media (max-width: 1024px) {
  .services-grid { grid-template-columns: repeat(4, 1fr); }
@@ -1019,8 +1016,6 @@
  .steps { grid-template-columns: 1fr; }
  .hero { padding-bottom: 48px; }
  .services { padding-top: 56px; }
- .service-card:nth-child(7) { flex-direction: column !important; align-items: flex-start !important; padding: 32px 28px !important; gap: 28px !important; }
- .service-card:nth-child(7) .service-icon { margin-bottom: 0 !important; }
  }
 
  /* ── MOBILE MENU OVERLAY ── */
@@ -1288,19 +1283,25 @@
  <nav id="navbar">
  <div class="container nav-inner">
  <a class="nav-logo" href="#">
-   <svg class="nav-logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-     <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" fill="rgba(91,106,240,0.15)" stroke="rgba(91,106,240,0.6)" stroke-width="1.2"/>
-     <path d="M14 7L21 11V17L14 21L7 17V11L14 7Z" fill="rgba(91,106,240,0.2)" stroke="rgba(91,106,240,0.8)" stroke-width="1"/>
-     <circle cx="14" cy="14" r="2.5" fill="#5B6AF0"/>
+   <svg class="nav-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+       <linearGradient id="lg" x1="0" y1="0" x2="1" y2="1">
+         <stop offset="0%" stop-color="#6d7ff2"/>
+         <stop offset="100%" stop-color="#9b6dff"/>
+       </linearGradient>
+     </defs>
+     <rect width="36" height="36" rx="9" fill="url(#lg)"/>
+     <polyline points="7,12 12,26 18,15 24,26 29,12" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
    </svg>
-   <span style="letter-spacing:-0.04em">Upscale<em style="letter-spacing:-0.04em">Sites</em></span></a>
+   Upscale<em>Sites</em>
+ </a>
  <ul class="nav-links" id="navLinks">
  <li><a href="#services">Services</a></li>
  <li><a href="#how">Process</a></li>
  <li><a href="#portfolio">Portfolio</a></li>
  <li><a href="#pricing">Pricing</a></li>
- <li><a href="#testimonials">Reviews</a></li>
  <li><a href="#faq">FAQ</a></li>
+ <li><a href="#testimonials">Reviews</a></li>
  <li><a href="#contact" class="btn btn-primary nav-cta">Get Started</a></li>
  </ul>
  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
@@ -1733,7 +1734,7 @@
  <div class="container">
  <div class="footer-grid">
  <div class="footer-brand">
- <div class="nav-logo"><span style="letter-spacing:-0.04em">Upscale<em style="letter-spacing:-0.04em;color:#a0aaff">Sites</em></span></div>
+ <div class="nav-logo">Upscale<em>Sites</em></div>
  <p>Custom websites built to grow your business. Fast, beautiful, and built to last.</p>
  </div>
  <div class="footer-col">
@@ -1764,7 +1765,7 @@
  </div>
  </div>
  <div class="footer-bottom">
- <p>© 2026 UpscaleSites. All rights reserved.</p>
+ <p>© 2026 Upscale Sites. All rights reserved.</p>
  <div class="social-links">
  <a class="social-link" href="#" title="Instagram">
    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -1992,26 +1993,8 @@
  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
 
  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
-
- // Mobile: tap anywhere on a service card to reveal/hide "Learn more"
- function initMobileServiceCards() {
-   if (window.innerWidth > 768) return;
-   document.querySelectorAll('.service-card').forEach(card => {
-     card.addEventListener('click', function(e) {
-       if (e.target.closest('.service-arrow')) return;
-       const isRevealed = card.classList.contains('touch-revealed');
-       document.querySelectorAll('.service-card.touch-revealed').forEach(c => c.classList.remove('touch-revealed'));
-       if (!isRevealed) card.classList.add('touch-revealed');
-     });
-   });
-   document.addEventListener('click', function(e) {
-     if (!e.target.closest('.service-card')) {
-       document.querySelectorAll('.service-card.touch-revealed').forEach(c => c.classList.remove('touch-revealed'));
-     }
-   });
- }
- initMobileServiceCards();
  </script>
 
 </body>
 </html>
+
