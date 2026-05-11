@@ -1438,10 +1438,15 @@
  <nav id="navbar">
  <div class="container nav-inner">
  <a class="nav-logo" href="#">
-   <svg class="nav-logo-mark" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-     <path d="M14 2L26 8V20L14 26L2 20V8L14 2Z" fill="rgba(91,106,240,0.15)" stroke="rgba(91,106,240,0.6)" stroke-width="1.2"/>
-     <path d="M14 7L21 11V17L14 21L7 17V11L14 7Z" fill="rgba(91,106,240,0.2)" stroke="rgba(91,106,240,0.8)" stroke-width="1"/>
-     <circle cx="14" cy="14" r="2.5" fill="#5B6AF0"/>
+   <svg class="nav-logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <defs>
+       <linearGradient id="wgrad" x1="0" y1="0" x2="1" y2="1">
+         <stop offset="0%" stop-color="#6d7ff2"/>
+         <stop offset="100%" stop-color="#9b6dff"/>
+       </linearGradient>
+     </defs>
+     <rect width="36" height="36" rx="9" fill="url(#wgrad)"/>
+     <polyline points="7,12 12,26 18,15 24,26 29,12" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
    </svg>
    <span style="letter-spacing:-0.04em">Upscale<em style="letter-spacing:-0.04em">Sites</em></span></a>
  <ul class="nav-links" id="navLinks">
