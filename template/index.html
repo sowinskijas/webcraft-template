@@ -372,7 +372,8 @@
  .service-card:nth-child(4) { grid-column: span 2; }
  .service-card:nth-child(5) { grid-column: span 2; }
  .service-card:nth-child(6) { grid-column: span 2; }
- .service-card:nth-child(7) { grid-column: span 6; }
+ .service-card:nth-child(7) { grid-column: span 3; }
+ .service-card:nth-child(8) { grid-column: span 3; }
 
  /* Dot pattern texture */
  .service-card::before {
@@ -409,7 +410,8 @@
  .service-card:nth-child(4)::after { background: rgba(232,99,74,0.4); }
  .service-card:nth-child(5)::after { background: rgba(251,191,36,0.3); }
  .service-card:nth-child(6)::after { background: rgba(34,197,94,0.35); }
- .service-card:nth-child(7)::after { background: rgba(91,106,240,0.35); }
+ .service-card:nth-child(7)::after { background: rgba(56,189,248,0.35); }
+ .service-card:nth-child(8)::after { background: rgba(91,106,240,0.35); }
 
  .service-card:hover {
  transform: translateY(-4px);
@@ -430,15 +432,15 @@
  .service-card:nth-child(1) p { font-size: 17px; }
 
  /* Last card (booking) — horizontal layout */
- .service-card:nth-child(7) {
+ .service-card:nth-child(8) {
  flex-direction: row;
  align-items: center;
  gap: 40px;
  padding: 36px 48px;
  }
- .service-card:nth-child(7) .service-icon { margin-bottom: 0; flex-shrink: 0; }
- .service-card:nth-child(7) .svc-text { flex: 1; }
- .service-card:nth-child(7) h3 { margin-bottom: 8px; }
+ .service-card:nth-child(8) .service-icon { margin-bottom: 0; flex-shrink: 0; }
+ .service-card:nth-child(8) .svc-text { flex: 1; }
+ .service-card:nth-child(8) h3 { margin-bottom: 8px; }
 
  .service-icon {
  width: 52px; height: 52px;
@@ -458,7 +460,8 @@
  .service-card:nth-child(4) .service-icon { background: rgba(232,99,74,0.15); border: 1px solid rgba(232,99,74,0.35); }
  .service-card:nth-child(5) .service-icon { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.3); }
  .service-card:nth-child(6) .service-icon { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); }
- .service-card:nth-child(7) .service-icon { background: rgba(91,106,240,0.15); border: 1px solid rgba(91,106,240,0.35); }
+ .service-card:nth-child(7) .service-icon { background: rgba(56,189,248,0.13); border: 1px solid rgba(56,189,248,0.35); }
+ .service-card:nth-child(8) .service-icon { background: rgba(91,106,240,0.15); border: 1px solid rgba(91,106,240,0.35); }
 
  .service-icon svg {
  width: 24px; height: 24px;
@@ -473,7 +476,8 @@
  .service-card:nth-child(4) .service-icon svg { stroke: #f87171; }
  .service-card:nth-child(5) .service-icon svg { stroke: #fbbf24; }
  .service-card:nth-child(6) .service-icon svg { stroke: #4ade80; }
- .service-card:nth-child(7) .service-icon svg { stroke: #7b8fff; }
+ .service-card:nth-child(7) .service-icon svg { stroke: #38bdf8; }
+ .service-card:nth-child(8) .service-icon svg { stroke: #7b8fff; }
 
  .service-card h3 {
  font-family: var(--font-display);
@@ -523,13 +527,13 @@
  .service-card:nth-child(4) { grid-column: span 2; }
  .service-card:nth-child(5) { grid-column: span 2; }
  .service-card:nth-child(6) { grid-column: span 2; }
- .service-card:nth-child(7) { grid-column: span 4; flex-direction: column; }
- .service-card:nth-child(7) .service-icon { margin-bottom: 24px; }
+ .service-card:nth-child(7), .service-card:nth-child(8) { grid-column: span 4; flex-direction: column; }
+ .service-card:nth-child(7) .service-icon, .service-card:nth-child(8) .service-icon { margin-bottom: 24px; }
  }
  @media (max-width: 640px) {
  .services-grid { grid-template-columns: 1fr; }
  .service-card:nth-child(n) { grid-column: span 1; grid-row: span 1; }
- .service-card:nth-child(7) { flex-direction: column; padding: 36px; }
+ .service-card:nth-child(7), .service-card:nth-child(8) { flex-direction: column; padding: 36px; }
  }
 
  /* HOW IT WORKS */
@@ -1028,8 +1032,8 @@
  .steps { grid-template-columns: 1fr; }
  .hero { padding-bottom: 48px; }
  .services { padding-top: 56px; }
- .service-card:nth-child(7) { flex-direction: column !important; align-items: flex-start !important; padding: 32px 28px !important; gap: 28px !important; }
- .service-card:nth-child(7) .service-icon { margin-bottom: 0 !important; }
+ .service-card:nth-child(7), .service-card:nth-child(8) { flex-direction: column !important; align-items: flex-start !important; padding: 32px 28px !important; gap: 28px !important; }
+ .service-card:nth-child(7) .service-icon, .service-card:nth-child(8) .service-icon { margin-bottom: 0 !important; }
  }
 
  /* ── MOBILE MENU OVERLAY ── */
@@ -1564,6 +1568,12 @@
  <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
  <h3>Maintenance &amp; Support</h3>
  <p>We don't disappear after launch. Ongoing support, updates, and monitoring to keep your site healthy and secure 24/7.</p>
+ <a href="#contact" class="service-arrow">Learn more →</a>
+ </div>
+ <div class="service-card stagger-child">
+ <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-1.5 3-2 6-2 9s.5 6 2 9"/><path d="M3 12h18"/><circle cx="12" cy="12" r="9"/><path d="M9 3.5S7 7 7 12s2 8.5 2 8.5"/><path d="M15 3.5S17 7 17 12s-2 8.5-2 8.5"/></svg></div>
+ <h3>AI Search Optimization</h3>
+ <p>Get found by AI tools like ChatGPT, Perplexity, and Google AI Overviews. We structure your content so AI assistants recommend your business first.</p>
  <a href="#contact" class="service-arrow">Learn more →</a>
  </div>
  <div class="service-card stagger-child">
