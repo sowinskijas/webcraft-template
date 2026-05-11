@@ -372,8 +372,8 @@
  .service-card:nth-child(4) { grid-column: span 2; }
  .service-card:nth-child(5) { grid-column: span 2; }
  .service-card:nth-child(6) { grid-column: span 2; }
- .service-card:nth-child(7) { grid-column: span 3; }
- .service-card:nth-child(8) { grid-column: span 3; }
+ .service-card:nth-child(7) { grid-column: span 3; grid-row: 4; }
+ .service-card:nth-child(8) { grid-column: span 3; grid-row: 4; }
 
  /* Dot pattern texture */
  .service-card::before {
@@ -431,16 +431,7 @@
  }
  .service-card:nth-child(1) p { font-size: 17px; }
 
- /* Last card (booking) — horizontal layout */
- .service-card:nth-child(8) {
- flex-direction: row;
- align-items: center;
- gap: 40px;
- padding: 36px 48px;
- }
- .service-card:nth-child(8) .service-icon { margin-bottom: 0; flex-shrink: 0; }
- .service-card:nth-child(8) .svc-text { flex: 1; }
- .service-card:nth-child(8) h3 { margin-bottom: 8px; }
+
 
  .service-icon {
  width: 52px; height: 52px;
@@ -1583,14 +1574,12 @@
  <p>Launch your online store with a seamless shopping experience, secure checkout, and integrations with the tools you already use.</p>
  <a href="#contact" class="service-arrow">Learn more →</a>
  </div>
- <!-- 8: Booking full-width -->
+ <!-- 8: Booking -->
  <div class="service-card stagger-child">
  <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg></div>
- <div class="svc-text">
  <h3>Booking &amp; Scheduling Integrations</h3>
  <p>We integrate third-party booking platforms — Calendly, Acuity, OpenTable, and more — so your clients can reserve appointments or tables directly from your site.</p>
  <a href="#contact" class="service-arrow">Learn more →</a>
- </div>
  </div>
  </div>
  </div>
