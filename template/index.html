@@ -1426,6 +1426,36 @@
  }
  }
 
+ /* ── SPLIT-SCREEN / INTERMEDIATE VIEWPORT FIXES ── */
+
+ /* Nav overflows at ~800-960px — show hamburger earlier */
+ @media (max-width: 960px) {
+   .nav-links { display: none; }
+   .hamburger { display: flex; }
+
+   /* Scale hero headline down so it doesn't dominate a half-width screen */
+   .hero h1 { font-size: clamp(40px, 7vw, 76px); }
+   .hero-stats { gap: 36px; margin-top: 56px; padding-top: 32px; }
+
+   /* Reduce section padding — 140px is too tall at narrow widths */
+   .services, .how, .portfolio, .pricing, .testimonials, .cta-section { padding: 96px 0; }
+   .faq { padding: 72px 0; }
+
+   /* Footer collapses from 4-col to 2-col well before 768px */
+   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 48px; }
+
+   /* Section subtitle font is a bit heavy at narrow widths */
+   .section-sub { font-size: 18px; }
+ }
+
+ /* Extra tightening for very narrow split-screen (e.g. half of 1280px = 640px) */
+ @media (max-width: 720px) {
+   .hero h1 { font-size: clamp(36px, 8vw, 60px); }
+   .hero-stats { flex-direction: column; gap: 24px; }
+   .container { padding: 0 20px; }
+   .booking-wrap { padding: 28px 20px; }
+ }
+
  </style>
 </head>
 <body>
@@ -2292,3 +2322,4 @@
 
 </body>
 </html>
+
